@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Main</title>
-	<link rel="stylesheet" href="table.css">
+	<link rel="stylesheet" href="css/table.css">
 </head>
 <body>
 	<table class="table_col">
