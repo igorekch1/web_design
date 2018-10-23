@@ -134,6 +134,12 @@ label {
   -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
 }
+
+.#uniq{
+  width: 0;
+  height: 0;
+}
+
 .login-submit-1:before, .login-submit-1:after {
   content: '';
   z-index: 1;

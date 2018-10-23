@@ -36,12 +36,12 @@
     </p>
 
     <p class="login-submit-1">
-      <button type="submit" class="login-button-1">Sign up</button>
+      <button type="submit" name="submit" class="login-button-1">Sign up</button>
     </p>
 
 
     <p class="login-submit-2">
-    	<button class="login-button-2" onclick="window.location.href = 'signin.php'">Sign in</button>  
+    	<button id="btn-ref" class="login-button-2">Sign in</button>
     </p>
 
     <p class="create-account"><a href="index.php">View all</a></p>
@@ -52,14 +52,15 @@
 		require('connect.php');
 
 		if(isset($_POST["submit"])){
-			$name = $_POST["firstName"];
-			$surname = $_POST["lastName"];
+			$firstName = $_POST["firstName"];
+			$lastName = $_POST["lastName"];
 			$email = $_POST["email"];
 			$password = $_POST["password"];
 			$repit_password = $_POST["pass-repeat"];
 
 			if($password == $repit_password){
-				$query = mysqli_query($conn, "INSERT INTO users (firstName, lastName, email, password) VALUES ('$name', '$surname', '$email', '$password')");
+				$query = mysqli_query($conn, "INSERT INTO users (firstName, lastName, email, password) VALUES ('$firstName', '$lastName', '$email', '$password')");
+        header('Location: edit.php');
 			}else{
 				die('Error, check password!!!');
 			}
@@ -72,6 +73,12 @@
 			}
 		}
 	?>
-
+  <script>
+    var btn = document.body.querySelector("#btn-ref");
+    console.log(btn);
+    btn.onclick = function(e){
+      window.location.href = "signin.php";
+    }
+  </script>
 </body>
 </html>

@@ -33,9 +33,9 @@
 		require('connect.php');
 
 		if(isset($_POST["password"]) && isset($_POST["password"])){
-			if(($_POST["password"] == "admin@gmail.com") and ($_POST["password"] =="admin")){
+			if(($_POST["email"] == "admin@gmail.com") and ($_POST["password"] =="admin")){
 				header('Location: admin.php');
-			}else{
+			} else {
 			$email = $_POST["email"];
 			$password = $_POST["password"];
 			
@@ -46,14 +46,15 @@
 			if($count == 1){
 				$_SESSION['email'] = $email;
 			}else{
-				$fmsg = "Error";
+				$fmsg = "Invalid login or password";
+				echo "<br /><script type='text/javascript'>alert('$fmsg');</script>";
 			}
 			if(isset($_SESSION['email'])){
 				$email = $_SESSION['email'];
-				header('Location: index.php');
+				header('Location: edit.php');
+			} 	
 			}
 		}
-	}
 	?>
 
 
