@@ -11,6 +11,7 @@
 	<?php
 		session_start();
 		require('connect.php');
+		require('file.php');
 
 		$email = $_SESSION['email'];
 		$_SESSION['url'] = "index.php";
@@ -19,6 +20,7 @@
 		$result = mysqli_query($conn, $query);
 
 		while($row = mysqli_fetch_array($result)){
+			 $_SESSION['id'] = $row['id'];
 			echo "
 
 				<form method=post action='update.php' class='login' role='form' style='width:500px'>
@@ -51,8 +53,10 @@
     				<input type='hidden' name='id' value='".$row['id']."'>
 
     				</form>
+					<script>alert(".$_SESSION['id'].")</script>
     			";
 		}
+
 	?>
 </body>
 </html>

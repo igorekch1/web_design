@@ -51,7 +51,7 @@
 					<td><input type=text name=lastName placeholder=Surname value='".$row['lastName']."'></td>
 					<td><input type=email name=email placeholder=Email value='".$row['email']."'></td>
 					<td><input type=password name=password placeholder=Password value='".$row['password']."'></td>
-					
+					<td><img  width=75 height =75 src ='".$row['img']."'></td>
 					<td><input type=submit value=Edit name=submit></td>
 					<td><input type=submit value=Delete name=submit_Delete></td>
 					<input type=hidden name=id value='".$row['id']."'>

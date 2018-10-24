@@ -75,9 +75,9 @@
 	?>
   <script>
     var btn = document.body.querySelector("#btn-ref");
-    console.log(btn);
     btn.onclick = function(e){
-      window.location.href = "signin.php";
+      e.preventDefault();
+      window.location.href = "./signin.php";
     }
   </script>
 </body>

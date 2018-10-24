@@ -3,7 +3,7 @@
 	require('connect.php');
 
 		if($_POST['submit']){
-			$query = "UPDATE users SET firstName='".$_POST['firstName']."', lastName='".$_POST['lastName']."', email='".$_POST['email']."', password='".$_POST['password']."' WHERE id='".$_POST['id']."'";
+			$query = "UPDATE users SET firstName='".$_POST['firstName']."', lastName='".$_POST['lastName']."', email='".$_POST['email']."', password='".$_POST['password']."' WHERE id='".$_SESSION['id']."'";
 		}
 		if($_POST['submit_Delete'])
 		{
