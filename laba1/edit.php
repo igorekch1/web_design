@@ -11,7 +11,7 @@
 	<?php
 		session_start();
 		require('connect.php');
-		// require('file.php');
+		require('file.php');
 
 		$email = $_SESSION['email'];
 		$_SESSION['url'] = "index.php";
@@ -23,7 +23,7 @@
 			 $_SESSION['id'] = $row['id'];
 			echo "
 
-				<form method=post action='update.php' class='login' role='form' style='width:500px'>
+				<form method=post action='update.php' class='login' role='form' style='width:500px' enctype='multipart/form-data'>
     				<p>
       					<label for='firstName'>First name:</label>
       					<input type='text' name='firstName' id='firstName' value='".$row['firstName']."'>
@@ -42,6 +42,11 @@
     				<p>
       					<label for='password'>Password:</label>
       					<input type='password' name='password' id='password' value='".$row['password']."'>
+    				</p>
+
+    				<p>
+      					<input type='file' id='file name='avatar'>
+      					<input type='submit' name='submit_file'>
     				</p>
 
     				<p id='uniq' class='login-submit-1' style='margin: 0 0 20px; right:65px;'>

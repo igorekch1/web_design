@@ -34,6 +34,7 @@
 		echo '<td>'.$row['lastName'].'</td>';
 		echo '<td>'.$row['email'].'</td>';
 		echo '<td>'.$row['password'].'</td>';
+		// echo '<td>'.$row['file'].'</td>';
 		echo "</tr>";
 
 	}

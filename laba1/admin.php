@@ -21,33 +21,26 @@
 <?php
 		session_start();
 		require('connect.php');
-		$email = $_SESSION['email'];
+		//$email = $_SESSION['email'];
 		$_SESSION['url'] = "admin.php";
 
 		$query = "SELECT * FROM users";
 		$result = mysqli_query($conn, $query);
 		
 		while($row = mysqli_fetch_array($result)){
-			if($row['id'] == "1"){
-				"<tr><form method=post>
-					<td><input type=text  name=firstName placeholder=Name value='".$row['firstName']."' readonly></td>
-					<td><input type=text name=lastName placeholder=Surname value='".$row['lastName']."' readonly></td>
-					<td><input type=email name=email placeholder=Email value='".$row['email']."' readonly></td>
-					<td><input type=password name=password placeholder=Password value='".$row['password']."' readonly></td>
-					<input type=hidden name=id value='".$row['id']."'>
-				</form></tr>";
-			}else{
+			
+				
 			echo "<tr><form method=post action='update.php'>
 					<td><input type=text  name=firstName placeholder=Name value='".$row['firstName']."'></td>
 					<td><input type=text name=lastName placeholder=Surname value='".$row['lastName']."'></td>
 					<td><input type=email name=email placeholder=Email value='".$row['email']."'></td>
 					<td><input type=password name=password placeholder=Password value='".$row['password']."'></td>
-					<td><img  width=75 height =75 src ='".$row['img']."'></td>
+					<td><img  width=75 height =75 src ='".$row['file']."'></td>
 					<td><input type=submit value=Edit name=submit></td>
 					<td><input type=submit value=Delete name=submit_Delete></td>
 					<input type=hidden name=id value='".$row['id']."'>
 				</form></tr>";
-			}
+			
 		}
 	?>
 </table>

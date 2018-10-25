@@ -2,15 +2,18 @@
 	session_start();
 	require('connect.php');
 
-		if($_POST['submit']){
+		if(isset($_POST['submit'])){
 			$query = "UPDATE users SET firstName='".$_POST['firstName']."', lastName='".$_POST['lastName']."', email='".$_POST['email']."', password='".$_POST['password']."' WHERE id='".$_POST['id']."'";
+			echo $query;
 		}
-		if($_POST['submit_Delete'])
+		if(isset($_POST['submit_Delete']))
 		{
 			$query = "DELETE users FROM users WHERE id='".$_POST['id']."'";
 		}
 	
 
-	mysqli_query($conn, $query);
+	$res = mysqli_query($conn, $query);
+	echo $res;
+
 	header('Location: '.$_SESSION['url']);
 ?>

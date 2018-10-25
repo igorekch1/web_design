@@ -35,6 +35,11 @@
       <input type="password" name="pass-repeat" id="pass-repeat" value="">
     </p>
 
+    <p>
+        <input type='file' id='file name='avatar'>
+        <input type='submit' name='submit_file'>
+    </p>
+
     <p class="login-submit-1">
       <button type="submit" name="submit" class="login-button-1">Sign up</button>
     </p>
@@ -50,7 +55,7 @@
 
 	<?php
 		require('connect.php');
-
+    //require('file.php');
 		if(isset($_POST["submit"])){
 			$firstName = $_POST["firstName"];
 			$lastName = $_POST["lastName"];
