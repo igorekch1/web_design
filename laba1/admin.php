@@ -6,16 +6,9 @@
 	<link rel="stylesheet" href="table.css">
 </head>
 <body>
-	<nav class="navbar navbar-default">
-			<div class="navbar-header">
-				<a href="#" class="navbar-brand">ADMIN</a>
-			</div>
-			<div>
-				<ul class="nav navbar-nav">
-					<li><a href='logout.php'>Logout</a></li>
-				</ul>
-			</div>
-		</nav>
+
+	<li style="list-style-type: none;"><a href='logout.php'>Logout</a></li>
+			
 <div class="container">
 <table>
 	<tr>
@@ -23,19 +16,17 @@
 		<th>Surname</th>
 		<th>E-Mail</th>
 		<th>Password</th>
+		<th>Image</th>
 	</tr>
 <?php
 		session_start();
 		require('connect.php');
-
 		$email = $_SESSION['email'];
 		$_SESSION['url'] = "admin.php";
 
 		$query = "SELECT * FROM users";
 		$result = mysqli_query($conn, $query);
-		echo "<h1>Edit</h1>
-			  <p>Введите в поля данные, которые хотите изменить</p>";
-
+		
 		while($row = mysqli_fetch_array($result)){
 			if($row['id'] == "1"){
 				"<tr><form method=post>
@@ -60,7 +51,6 @@
 		}
 	?>
 </table>
-<a href="logout.php">Logout</a>
 </div>
 </body>
 </html>

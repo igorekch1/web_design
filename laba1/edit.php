@@ -11,7 +11,7 @@
 	<?php
 		session_start();
 		require('connect.php');
-		require('file.php');
+		// require('file.php');
 
 		$email = $_SESSION['email'];
 		$_SESSION['url'] = "index.php";
@@ -53,7 +53,6 @@
     				<input type='hidden' name='id' value='".$row['id']."'>
 
     				</form>
-					<script>alert(".$_SESSION['id'].")</script>
     			";
 		}
 
