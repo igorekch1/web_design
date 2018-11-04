@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form method="post" action="" class="login" role="form">
+	<form method="post" action="" class="login" role="form" >
     <p>
       <label for="firstName">First name:</label>
       <input type="text" name="firstName" id="firstName" value="">
@@ -34,10 +34,13 @@
       <label for="pass-repeat">Repeat:</label>
       <input type="password" name="pass-repeat" id="pass-repeat" value="">
     </p>
+    <p>
+      <img src="" alt="" id="ava">
+    </p>
 
     <p>
-        <input type='file' id='file name='avatar'>
-        <input type='submit' name='submit_file'>
+        <input type='file' id='file' name='file'>
+        <img src='' alt='' id='ava' name='ava'>
     </p>
 
     <p class="login-submit-1">
@@ -62,9 +65,11 @@
 			$email = $_POST["email"];
 			$password = $_POST["password"];
 			$repit_password = $_POST["pass-repeat"];
+      $t_dir='uploads/';
+      $t_file = $t_dir.basename($_FILES['file']['name']);
 
 			if($password == $repit_password){
-				$query = mysqli_query($conn, "INSERT INTO users (firstName, lastName, email, password) VALUES ('$firstName', '$lastName', '$email', '$password')");
+				$query = mysqli_query($conn, "INSERT INTO users (firstName, lastName, email, password, image) VALUES ('$firstName', '$lastName', '$email', '$password', '$t_file')");
         header('Location: edit.php');
 			}else{
 				die('Error, check password!!!');
@@ -76,6 +81,11 @@
 				$smsf = "Error!";
 				echo $smsf;
 			}
+
+      // if(move_uploaded_file($_FILES['file']['tmp_name'], $t_file)){
+      //   $query = "UPDATE users SET image='".$t_file."' WHERE email='$email'";
+      //   mysqli_query($conn, $query);
+      // }
 		}
 	?>
   <script>
@@ -85,5 +95,6 @@
       window.location.href = "./signin.php";
     }
   </script>
+  <script src="script/file.js"></script>  
 </body>
 </html>

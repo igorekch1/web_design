@@ -15,6 +15,7 @@
 			<th>Last Name</th>	
 			<th>Email</th>
 			<th>Password</th>
+			<th>Avatar</th>
 		</tr>
 
 <?php
@@ -24,19 +25,20 @@
 
 
 
-	$sql=" SELECT * FROM users "; 
-	$res=mysqli_query($conn, $sql) or die ('no connection');
+	$sql = " SELECT * FROM users "; 
+	$res = mysqli_query($conn, $sql) or die ('no connection');
 
 
-	while($row=mysqli_fetch_assoc($res)){
-		echo "<tr>";
-		echo '<td>'.$row['firstName'].'</td>';
-		echo '<td>'.$row['lastName'].'</td>';
-		echo '<td>'.$row['email'].'</td>';
-		echo '<td>'.$row['password'].'</td>';
-		// echo '<td>'.$row['file'].'</td>';
-		echo "</tr>";
-
+	while($row = mysqli_fetch_assoc($res)){
+		echo "
+		<tr>
+			<td>".$row['firstName']."</td>
+			<td>".$row['lastName']."</td>
+			<td>".$row['email']."</td>
+			<td>".$row['password']."</td>
+			<td><img width=75 height=75 src='".$row['image']."'></td>
+		</tr>";
+		//require ('file.php');
 	}
 ?>		
 	</table>	

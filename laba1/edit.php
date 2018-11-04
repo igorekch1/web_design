@@ -11,7 +11,7 @@
 	<?php
 		session_start();
 		require('connect.php');
-		require('file.php');
+		//require('file.php');
 
 		$email = $_SESSION['email'];
 		$_SESSION['url'] = "index.php";
@@ -44,10 +44,10 @@
       					<input type='password' name='password' id='password' value='".$row['password']."'>
     				</p>
 
-    				<p>
-      					<input type='file' id='file name='avatar'>
-      					<input type='submit' name='submit_file'>
-    				</p>
+            <p>
+                <input type='file' id='file' name='file'>
+                <img src='' alt='' id='ava'>
+            </p>
 
     				<p id='uniq' class='login-submit-1' style='margin: 0 0 20px; right:65px;'>
       					<button type='submit' name='submit' class='login-button-1'>Edit</button>
@@ -61,6 +61,17 @@
     			";
 		}
 
+    $t_dir='uploads/';
+    $t_file = $t_dir.basename($_FILES['file']['name']);
+    if(move_uploaded_file($_FILES['file']['tmp_name'], $t_file)){
+      $query = "UPDATE users SET image='".$t_file."' WHERE email='$email'";
+      mysqli_query($conn, $query);
+    }else{
+    }
+
 	?>
+
+<script src="script/file.js"></script>  
+
 </body>
 </html>
