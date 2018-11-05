@@ -16,7 +16,7 @@
 		<th>Surname</th>
 		<th>E-Mail</th>
 		<th>Password</th>
-		<th>Image</th>
+		<th>Avatar</th>
 	</tr>
 <?php
 		session_start();
