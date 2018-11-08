@@ -28,6 +28,14 @@ rewind.style= `
   left: 50%;
 `
 
+// let sel = document.querySelector ( 'select' )
+// const options = ["...", "Circle", "Square", "Triangle" ]
+// options.forEach ( x => {
+//         var opt = document.createElement ( 'option' )
+//         opt.innerHTML = x
+//         opt.value = x
+//         sel.appendChild ( opt )
+// })
 
 class Shape{
   constructor(){
@@ -47,7 +55,7 @@ class Circle extends Shape{
       this.draw = function(){
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-        ctx.closePath();
+        //ctx.closePath();
         ctx.fillStyle = this.color;
         ctx.fill();
       }
@@ -64,15 +72,52 @@ class Square extends Shape{
       this.draw = function(){
         ctx.beginPath();
         ctx.fillRect(x1,y1,x2,y2)
-        ctx.closePath();
+        //ctx.closePath();
         ctx.fillStyle = this.color;
         ctx.fill();
       }
   }
 }
 
-var ball = new Circle(50,50,25);
-console.log(ball)
+class Triangle extends Shape{
+  constructor(x,y){
+    super();
+
+    this.x=x;
+    this.y=y;
+    this.draw = function(){
+      ctx.beginPath();
+      ctx.moveTo(x,x);
+      ctx.lineTo(x,y)
+      ctx.lineTo(y,x);
+      ctx.fill();
+    }
+
+  }
+
+}
+
+
+// TODO: make an objects on select change 
+
+// var new_shape;
+// sel.onchange = function(e){
+//   var my_class = e.target.value;
+//   if (my_class == "Circle"){
+//     new_shape = new Circle(50,50,30);
+//   }
+//if (my_class == "Square"){
+//     new_shape = new Square(50,50,100,100);
+//   }
+//if (my_class == "Triange"){
+//     new_shape = new Triangle(50,50);
+//   }
+
+//   console.log("----",new_shape)
+//   return new_shape;
+// }
+var new_shape = new Circle(50,50,30);
+console.log("______",new_shape)
 
 function clear() {
   ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
@@ -81,26 +126,26 @@ function clear() {
 
 function draw() {
   clear()
-  //ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-  //ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ball.draw();
-  ball.x += ball.vx;
-  ball.y += ball.vy;
+
+  new_shape.draw();
+  new_shape.x += new_shape.vx;
+  new_shape.y += new_shape.vy;
   // ball.vy *= .99;
   // ball.vy += .25;
 
-  if (ball.y + ball.vy > canvas.height ||
-      ball.y + ball.vy < 0) {
-    ball.vy = -ball.vy;
+  if (new_shape.y + new_shape.vy > canvas.height ||
+      new_shape.y + new_shape.vy < 0) {
+    new_shape.vy =- new_shape.vy;
   }
-  if (ball.x + ball.vx > canvas.width ||
-      ball.x + ball.vx < 0) {
-    ball.vx = -ball.vx;
+  if (new_shape.x + new_shape.vx > canvas.width ||
+      new_shape.x + new_shape.vx < 0) {
+    new_shape.vx =- new_shape.vx;
   }
 
   raf = window.requestAnimationFrame(draw);
 }
 
+// Делаем перерисовку(обновляем анимацию)
 start.addEventListener('click', function(e) {
   raf = window.requestAnimationFrame(draw);
 });
@@ -109,6 +154,7 @@ forward.addEventListener('click', function(e) {
   raf = window.requestAnimationFrame(draw);
 });
 
+// Отменяем анимацию
 stop.addEventListener('click', function(e) {
   window.cancelAnimationFrame(raf);
 });
@@ -118,18 +164,18 @@ rewind.addEventListener('click', function(e) {
 });
 
 
-ball.draw();
+new_shape.draw();
 
 let color = document.querySelector("#color");
 let resize = document.querySelector("#size");
 
 function control(){
   color.onchange = function(e){
-    ball.color = e.target.value;
+    new_shape.color = e.target.value;
   }
 
   resize.oninput = function(e){
-    ball.radius = e.target.value;
+    new_shape.radius = e.target.value;
   }
 }
 
@@ -139,9 +185,9 @@ control();
 canvas.addEventListener('mousemove', function(e) {
   if (!running) {
     clear();
-    ball.x = e.clientX;
-    ball.y = e.clientY;
-    ball.draw();
+    new_shape.x = e.clientX-300;
+    new_shape.y = e.clientY-120;
+    new_shape.draw();
   }
 });
 
@@ -157,4 +203,4 @@ canvas.addEventListener('mouseout', function(e) {
   running = false;
 });
 
-ball.draw();
+new_shape.draw();
