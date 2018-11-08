@@ -2,6 +2,32 @@ var canvas = document.querySelector("#canvas");
 var ctx = canvas.getContext('2d');
 var raf;
 
+let start = document.querySelector("#start")
+let stop = document.querySelector("#stop")
+let forward = document.querySelector("#forward")
+let rewind = document.querySelector("#rewind")
+
+start.style= `
+  position: fixed;
+  top: 15px;
+  left: 47%;
+`
+stop.style= `
+  position: fixed;
+  top: 15px;
+  left: 50%;
+`
+forward.style= `
+  position: fixed;
+  top: 55px;
+  left: 47%;
+`
+rewind.style= `
+  position: fixed;
+  top: 55px;
+  left: 50%;
+`
+
 var ball = {
   x: 50,
   y: 50,
@@ -25,8 +51,6 @@ function clear() {
 
 function draw() {
   clear()
-  //ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-  //ctx.fillRect(0, 0, canvas.width, canvas.height);
   ball.draw();
   ball.x += ball.vx;
   ball.y += ball.vy;
@@ -45,19 +69,28 @@ function draw() {
   raf = window.requestAnimationFrame(draw);
 }
 
-canvas.addEventListener('click', function(e) {
+start.addEventListener('click', function(e) {
   raf = window.requestAnimationFrame(draw);
 });
 
-canvas.addEventListener('mouseover', function(e) {
+forward.addEventListener('click', function(e) {
+  raf = window.requestAnimationFrame(draw);
+});
+
+stop.addEventListener('click', function(e) {
   window.cancelAnimationFrame(raf);
 });
+
+rewind.addEventListener('click', function(e) {
+  window.cancelAnimationFrame(raf);
+});
+
 
 ball.draw();
 
 let color = document.querySelector("#color");
 let resize = document.querySelector("#size");
-let speed = document.querySelector("#speed");
+resize.placeholder = `In px...`;
 
 function control(){
   color.onchange = function(e){
@@ -66,10 +99,6 @@ function control(){
 
   resize.oninput = function(e){
     ball.radius = e.target.value;
-  }
-
-  speed.onchange = function(e){
-    ball.vx = e.target.value;
   }
 }
 
