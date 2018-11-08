@@ -28,21 +28,51 @@ rewind.style= `
   left: 50%;
 `
 
-var ball = {
-  x: 50,
-  y: 50,
-  vx: 10,
-  vy: 1,
-  radius: 25,
-  color: 'black',
-  draw: function() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-    ctx.closePath();
-    ctx.fillStyle = this.color;
-    ctx.fill();
+
+class Shape{
+  constructor(){
+      this.vx = 10;
+      this.vy =1;
+      this.color = `black`;
   }
-};
+}
+
+class Circle extends Shape{
+  constructor(x,y,radius){
+      super();
+
+      this.x = x;
+      this.y = y;
+      this.radius = radius;
+      this.draw = function(){
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+        ctx.closePath();
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+  }
+}
+
+class Square extends Shape{
+  constructor(x1,y1,x2,y2){
+    super();
+      this.x1 = x1;
+      this.y1 = y1;
+      this.x2 = x2;
+      this.y2 = y2;
+      this.draw = function(){
+        ctx.beginPath();
+        ctx.fillRect(x1,y1,x2,y2)
+        ctx.closePath();
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+  }
+}
+
+var ball = new Circle(50,50,25);
+console.log(ball)
 
 function clear() {
   ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
@@ -51,6 +81,8 @@ function clear() {
 
 function draw() {
   clear()
+  //ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+  //ctx.fillRect(0, 0, canvas.width, canvas.height);
   ball.draw();
   ball.x += ball.vx;
   ball.y += ball.vy;
@@ -90,7 +122,6 @@ ball.draw();
 
 let color = document.querySelector("#color");
 let resize = document.querySelector("#size");
-resize.placeholder = `In px...`;
 
 function control(){
   color.onchange = function(e){
@@ -105,7 +136,7 @@ function control(){
 control();
 
 // Mouse control
-/** canvas.addEventListener('mousemove', function(e) {
+canvas.addEventListener('mousemove', function(e) {
   if (!running) {
     clear();
     ball.x = e.clientX;
@@ -126,4 +157,4 @@ canvas.addEventListener('mouseout', function(e) {
   running = false;
 });
 
-ball.draw(); **/
+ball.draw();
